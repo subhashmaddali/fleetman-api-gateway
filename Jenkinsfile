@@ -1,11 +1,13 @@
 pipeline {
    agent { label 'ubuntu' }
-
+  tools {
+    maven 'mvn'
+  }
    environment {
      // You must set the following environment variables
      // ORGANIZATION_NAME
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
-     MAVEN_HOME = tool name: 'Maven'
+     MAVEN_HOME = tool name: 'mvn'
      SERVICE_NAME = "fleetman-api-gateway"
      REPOSITORY_TAG="Dileep4444/poc-api-gateway:${BUILD_ID}"
    }
@@ -19,7 +21,10 @@ pipeline {
       }
       stage('Build') {
          steps {
+
+
             sh '''mvn clean package'''
+             
          }
       }
 
