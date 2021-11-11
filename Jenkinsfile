@@ -1,5 +1,5 @@
 pipeline {
-   agent any
+   agent ubuntu
 
    environment {
      // You must set the following environment variables
@@ -7,14 +7,14 @@ pipeline {
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
 
      SERVICE_NAME = "fleetman-api-gateway"
-     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
+     REPOSITORY_TAG="Dileep4444/poc-api-gateway:${BUILD_ID}"
    }
 
    stages {
       stage('Preparation') {
          steps {
             cleanWs()
-            git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
+            git url: "https://github.com/subhashmaddali/fleetman-api-gateway.git"
          }
       }
       stage('Build') {
