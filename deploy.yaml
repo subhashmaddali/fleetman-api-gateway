@@ -42,4 +42,4 @@ spec:
       port: 8080
       nodePort: 30020
 
-  type: NodePort
+  type: LoadBalancer
