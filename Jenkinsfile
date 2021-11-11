@@ -9,7 +9,7 @@ pipeline {
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
      MAVEN_HOME = tool name: 'mvn'
      SERVICE_NAME = "fleetman-api-gateway"
-     REPOSITORY_TAG="Dileep4444/poc-api-gateway:${BUILD_ID}"
+     REPOSITORY_TAG="dileep4444/poc-api-gateway:${BUILD_ID}"
    }
 
    stages {
@@ -31,6 +31,7 @@ pipeline {
       stage('Build and Push Image') {
          steps {
            sh 'docker image build -t ${REPOSITORY_TAG} .'
+           sh 'docker push ${REPOSITORY_TAG}'
          }
       }
 
