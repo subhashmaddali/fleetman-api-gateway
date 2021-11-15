@@ -19,11 +19,20 @@ pipeline {
             git url: "https://github.com/subhashmaddali/fleetman-api-gateway.git"
          }
       }
-      stage('Build') {
+      stage('Testing') {
          steps {
 
 
-            sh '''mvn clean package'''
+            sh '''mvn test'''
+             
+         }
+      }
+
+      stage('code quality tests using SonarQube and Build') {
+         steps {
+
+
+            sh '''mvn clean package sonar:sonar -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=e6610749a4efee1b87f28d194695c352bdd7abad'''
              
          }
       }
